@@ -1,4 +1,6 @@
 // 对state进行映射
+import state from './state'
+
 /* eslint-disable indent */
 export const singer = state => state.singer
 
@@ -21,7 +23,21 @@ export const currentSong = (state) => {
 
 export const disc = state => state.disc
 
+export const radio = state => state.radio
+
+export const radioName = state => state.radioName
+
 export const topList = state => state.topList
+
+export const topCount = state => state.topCount
+
+export const mvList = state => state.mvList
+
+export const vid = state => state.vid
+
+export const mvUrl = state => state.mvUrl
+
+export const mvPic = state => state.mvPic
 
 export const searchHistory = state => state.searchHistory
 

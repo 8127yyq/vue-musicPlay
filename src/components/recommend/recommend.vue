@@ -2,7 +2,7 @@
   <div class="recommend" ref="recommend">
     <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
-        <div v-if="recommends.length" class="slider-wrapper">
+        <!-- <div v-if="recommends.length" class="slider-wrapper">
           <slider>
             <div v-for="item in recommends">
               <a :href="item.linkUrl">
@@ -10,6 +10,14 @@
               </a>
             </div>
           </slider>
+        </div> -->
+        <div class="radio-list">
+          <h1 class="radio-title">最新电台推荐</h1>
+          <ul>
+            <li class="radio-item" v-for="item in radioList"
+                v-html="item.name"  @click="selectRadio(item)"
+            ></li>
+          </ul>
         </div>
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
@@ -39,7 +47,7 @@
   import Scroll from 'base/scroll/scroll'
   import Loading from 'base/loading/loading'
   import {mapMutations} from 'vuex'
-  import {getRecommend, getDiscList} from 'api/recommend'
+  import {getRecommend, getDiscList, getRadioList} from 'api/recommend'
   import {ERR_OK} from 'api/config'
   import {playlistMixin} from 'common/js/mixin'
 
@@ -47,13 +55,15 @@
     mixins: [playlistMixin],
     data() {
       return {
-        recommends: [],
-        discList: []
+        // recommends: [],
+        discList: [],
+        radioList: []
       }
     },
     created() {
-      this._getRecommend()
+      // this._getRecommend()
       this._getDiscList()
+      this._getRadioList()
     },
     methods: {
       handlePlaylist(playlist) {
@@ -68,17 +78,31 @@
         // 更改disc在state
         this.setDisc(item)
       },
-      _getRecommend() {
-        getRecommend().then((res) => {
-          if (res.code === ERR_OK) {
-            this.recommends = res.data.slider
-          }
+      selectRadio(item) {
+        this.$router.push({
+          path: `radio/${item.type}`
         })
+        // 更改radio在state
+        this.setRadio(item)
       },
+      // _getRecommend() {
+      //   getRecommend().then((res) => {
+      //     if (res.code === ERR_OK) {
+      //       this.recommends = res.data.slider
+      //     }
+      //   })
+      // },
       _getDiscList() {
         getDiscList().then((res) => {
           if (res.code === ERR_OK) {
             this.discList = res.data.list
+          }
+        })
+      },
+      _getRadioList() {
+        getRadioList().then((res) => {
+          if (res.code === ERR_OK) {
+            this.radioList = res.data.data.groupList
           }
         })
       },
@@ -89,7 +113,8 @@
         }
       },
       ...mapMutations({
-        setDisc:'SET_DISC'
+        setDisc:'SET_DISC',
+        setRadio: 'SET_RADIO'
       })
     },
     components: {
@@ -115,6 +140,27 @@
         position: relative
         width: 100%
         overflow: hidden
+      .radio-list
+        margin: 0 20px 0px 20px
+        overflow: hidden
+        .radio-title
+          height: 65px
+          line-height: 65px
+          text-align: center
+          font-size: $font-size-medium
+          color: $color-theme
+        .radio-item
+          display: inline-block
+          width: 20%
+          height: 100%
+          padding: 2% 3%
+          margin: 0 3% 3% 3%
+          border-radius: 6px
+          background: $color-highlight-background
+          text-align: center
+          line-height: 20px
+          overflow: hidden
+          font-size: $font-size-medium
       .recommend-list
         .list-title
           height: 65px

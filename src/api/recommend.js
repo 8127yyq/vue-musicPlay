@@ -2,7 +2,7 @@ import jsonp from 'common/js/jsonp'
 import {commonParams, options} from './config'
 import axios from 'axios'
 
-// ?????
+// banner
 export function getRecommend() {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
 
@@ -13,6 +13,31 @@ export function getRecommend() {
   })
 
   return jsonp(url, data, options)
+}
+
+// 获取电台
+export function getRadioList() {
+  const url = '/api/getRadioList'
+  // const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_radiolist.fcg'
+
+  const data = Object.assign({}, commonParams, {
+    platform: 'yqq.json',
+    hostUin: 0,
+    loginUin: 0,
+    channel: 'radio',
+    page: 'index',
+    tpl: 'wk',
+    new: 1,
+    needNewCode: 0,
+    format: 'json'
+  })
+
+  // return jsonp(url, data, options)
+  return axios.get(url, {
+    params: data
+  }).then((res) => {
+    return Promise.resolve(res.data)
+  })
 }
 
 // ??????

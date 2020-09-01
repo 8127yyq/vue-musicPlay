@@ -26,6 +26,7 @@
                                     @delete="deleteSearchHistory"
                         ></search-list>
                     </div>
+                    <mv></mv>
                 </div>
             </scroll>
         </div>
@@ -45,10 +46,11 @@ import SearchList from 'base/search-list/search-list'
 import Confirm from 'base/confirm/confirm'
 import Scroll from 'base/scroll/scroll'
 import Suggest from 'components/suggest/suggest'
+import Mv from 'components/mv/mv'
 import {getHotKey} from 'api/search'
 import {ERR_OK} from 'api/config'
 // import {mapActions, mapGetters} from 'vuex'
-import {mapActions} from 'vuex'
+import {mapActions, mapMutations} from 'vuex'
 import {playlistMixin, searchMixin} from 'common/js/mixin'
 
 export default {
@@ -130,7 +132,8 @@ export default {
         Suggest,
         SearchList,
         Confirm,
-        Scroll
+        Scroll,
+        Mv
     }
 }
 </script>

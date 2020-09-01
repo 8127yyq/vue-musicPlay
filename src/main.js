@@ -8,6 +8,11 @@ import VueLazyLoad from 'vue-lazyload'
 
 import 'common/stylus/index.styl'
 
+import VideoPlayer from 'vue-video-player'
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
+Vue.use(VideoPlayer)
+
 // import Vconsole from 'vconsole'
 // let vConsole = new Vconsole()
 // Vue.use(vConsole)

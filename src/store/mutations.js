@@ -29,8 +29,29 @@ const mutations = {
     [types.SET_DISC](state, disc) {
       state.disc = disc
     },
+    [types.SET_RADIO](state, radio) {
+      state.radio = radio
+    },
+    [types.SET_RADIONAME](state, radioName) {
+      state.radioName = radioName
+    },
     [types.SET_TOP_LIST](state, topList) {
       state.topList = topList
+    },
+    [types.SET_TOP_COUNT](state, topCount) {
+      state.topCount = topCount
+    },
+    [types.SET_MV_LIST](state, mvList) {
+      state.mvList = mvList
+    },
+    [types.SET_VID](state, vid) {
+      state.vid = vid
+    },
+    [types.SET_MVURL](state, mvUrl) {
+      state.mvUrl = mvUrl
+    },
+    [types.SET_MVPIC](state, mvPic) {
+      state.mvPic = mvPic
     },
     [types.SET_SEARCH_HISTORY](state, history) {
       state.searchHistory = history

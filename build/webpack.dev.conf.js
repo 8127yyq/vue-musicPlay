@@ -67,6 +67,36 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           console.log(e)
         })
       }),
+      // 推荐的热门歌单获取
+      app.get('/api/getRadioList', (req, res) => {
+        var url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_radiolist.fcg'
+        axios.get(url, {
+          headers: {
+            referer: 'https://y.qq.com/portal/radio.html',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      }),
+      // 视频下面的评论获取
+      app.get('/api/getComment', (req, res) => {
+        var url = 'https://c.y.qq.com/base/fcgi-bin/fcg_global_comment_h5.fcg'
+        axios.get(url, {
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      }),
       // 推荐的热门歌单里的歌曲获取
       app.get('/api/getSongList', (req, res) => {
         var url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'

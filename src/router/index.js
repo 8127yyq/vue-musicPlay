@@ -41,8 +41,26 @@ const SingerDetail = (resolve) => {
   })
 }
 
+const Mvs = (resolve) => {
+  import('components/mvs/mvs').then((module) => {
+    resolve(module)
+  })
+}
+
 const Disc = (resolve) => {
   import('components/disc/disc').then((module) => {
+    resolve(module)
+  })
+}
+
+const Radio = (resolve) => {
+  import('components/radio/radio').then((module) => {
+    resolve(module)
+  })
+}
+
+const RadiosList = (resolve) => {
+  import('components/radios-list/radios-list').then((module) => {
     resolve(module)
   })
 }
@@ -76,6 +94,14 @@ export default new Router({
       ]
     },
     {
+      path: '/radio/:id',
+      component: Radio
+    },
+    {
+      path: '/radio/list/:id',
+      component: RadiosList
+    },
+    {
       path: '/singer',
       component: Singer,
       children: [
@@ -104,6 +130,10 @@ export default new Router({
           component: SingerDetail
         }
       ]
+    },
+    {
+      path: '/search/list/:id',
+      component: Mvs
     },
     {
       path: '/user',

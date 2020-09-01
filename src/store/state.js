@@ -16,7 +16,18 @@ const state = {
   // 当前播放索引
   currentIndex: -1,
   disc: {},
+  radio: {},
+  radioName: {},
   topList: {},
+  // 随机获取topList中的数组
+  topCount: {},
+  // MV list数据
+  mvList: {},
+  // MV vid
+  vid: {},
+  // MV url
+  mvUrl: {},
+  mvPic: {},
   // 搜索历史  // searchHistory: [] 需要获取之前搜索过的历史
   searchHistory: loadSearch(),
   // 播放历史-初始值读取缓存
